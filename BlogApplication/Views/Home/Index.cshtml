@@ -1,1 +1,19 @@
-﻿<h2>Home Page</h2>
+﻿@model IEnumerable<Post>
+@{ 
+
+}
+<h2>Home Page</h2>
+<div>
+    <ul>
+        @foreach (Post post in Model)
+        {
+        <li>
+            <a asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">@post.Title</a>
+
+            <p>@post.Body</p>
+
+
+        </li>
+        }
+    </ul>
+</div>

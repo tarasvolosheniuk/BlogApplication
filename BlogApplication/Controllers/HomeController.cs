@@ -1,5 +1,6 @@
 ﻿using BlogApplication.Data;
 using BlogApplication.Models;
+using BlogApplication.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,32 +12,23 @@ namespace BlogApplication.Controllers
 {
     public class HomeController:Controller
     {
-        private AppDbContext _context;
+        private IRepository _repo;
 
-        public HomeController(AppDbContext context)
+        public HomeController(IRepository repo)
         {
-            _context = context;
+            _repo = repo;
         }
         public IActionResult Index()
         {
-            return View();
+            var posts = _repo.GetAllPost();
+            return View(posts);
         }
 
-        public IActionResult Post()
+        public IActionResult Post(int id)
         {
-            return View();
+            var post = _repo.GetPost(id);
+            return View(post);
         }
-        [HttpGet]
-        public IActionResult Edit()
-        {
-            return View(new Post());
-        }
-        [HttpPost]
-        public async Task<IActionResult> Edit(Post post)
-        {
-            _context.Posts.Add(post);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+       
     }
 }

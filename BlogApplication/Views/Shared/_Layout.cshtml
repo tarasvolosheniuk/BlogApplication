@@ -11,11 +11,26 @@
         <a asp-controller="Home" asp-action="Index">
             Home
         </a>
-        <a asp-controller="Home" asp-action="Post">
-            Post
-        </a>
+
         <a asp-controller="Home" asp-action="Edit">
-            Edit
+            Create Post
+        </a>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Auth" asp-action="Logout">
+                Logout
+            </a>
+
+        }
+        else
+        {
+            <a asp-controller="Auth" asp-action="Login">
+                Sign In
+            </a>
+        }
+
+        <a asp-controller="Panel" asp-action="Index">
+             Admin panel
         </a>
 
     </div>

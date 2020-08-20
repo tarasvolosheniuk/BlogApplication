@@ -1,0 +1,79 @@
+﻿using BlogApplication.Models;
+using BlogApplication.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BlogApplication.Controllers
+{
+    [Authorize(Roles = "admin")]
+
+    public class PanelController:Controller
+    {
+        private IRepository _repo;
+
+        public PanelController(IRepository repository)
+        {
+            _repo = repository;
+        }
+        public IActionResult Index ()
+        {
+            var posts = _repo.GetAllPost();
+            return View(posts);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return View(new Post());
+
+            }
+            else
+            {
+                var post = _repo.GetPost((int)id);
+                return View(post);
+
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(Post post)
+        {
+            if (post.Id > 0)
+            {
+                _repo.UpdatePost(post);
+            }
+
+            else
+                _repo.AddPost(post);
+            if (await _repo.SaveChangesAsync())
+                return RedirectToAction("Index");
+            else
+                return View(post);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Remove(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+                _repo.RemovePost((int)id);
+                await _repo.SaveChangesAsync();
+                return RedirectToAction("Index");
+
+            }
+        }
+
+
+    }
+}

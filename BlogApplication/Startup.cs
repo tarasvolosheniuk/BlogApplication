@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using BlogApplication.Repository;
+using Microsoft.AspNetCore.Identity;
 
 namespace BlogApplication
 {
@@ -24,6 +26,16 @@ namespace BlogApplication
         {
             services.AddMvc(options=>options.EnableEndpointRouting=false);
             services.AddDbContext<AppDbContext>(options=>options.UseSqlServer(_configuration["DevConnection"]));
+            services.AddTransient<IRepository,Repository.Repository>();
+            services.AddIdentity<IdentityUser,IdentityRole>(options=> {
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+                })
+                //.AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>();
+            services.ConfigureApplicationCookie(options => { options.LoginPath = "/Auth/Login"; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,7 +45,7 @@ namespace BlogApplication
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+            app.UseAuthentication();
             app.UseRouting();
             app.UseMvcWithDefaultRoute();
 

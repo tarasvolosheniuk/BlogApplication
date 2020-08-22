@@ -52,5 +52,9 @@ namespace BlogApplication.Repository
             return false;
         }
 
+        public List<Post> GetAllPost(string category)
+        {
+            return _context.Posts.Where(post=>post.Category.ToLower().Equals(category.ToLower())).ToList();
+        }
     }
 }

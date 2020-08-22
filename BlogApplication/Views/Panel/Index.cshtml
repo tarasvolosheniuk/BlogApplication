@@ -10,7 +10,7 @@
         <li>
            @post.Title
 
-            <p>@post.Body</p>
+            <p>@Html.Raw(post.Body)</p>
 
             <a asp-controller="Panel" asp-action="Edit" asp-route-id="@post.Id">Edit</a>
             <a asp-controller="Panel" asp-action="Remove" asp-route-id="@post.Id">Remove</a>

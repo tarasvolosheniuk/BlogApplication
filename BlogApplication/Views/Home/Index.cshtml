@@ -1,19 +1,35 @@
 ﻿@model IEnumerable<Post>
 @{ 
-
+    ViewBag.Title = "Blog website";
+    ViewBag.Description = "This blog is My personal blog as an ASP.NET Core 3.1 Project";
+    ViewBag.Keywords = "blog programming gaming photography lifestyle music books";
 }
-<h2>Home Page</h2>
-<div>
-    <ul>
-        @foreach (Post post in Model)
+<div class="main-img">
+    <span class="title">Personal Blog site</span>
+</div>
+
+<div class="container">
+
+    @*<img src="~/content/static/easy-effective-tips-starting-blog.jpg" width="500"/>*@
+
+    @foreach (Post post in Model)
+    {
+    <a class="post" asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
+        @if (!String.IsNullOrEmpty(post.Image))
         {
-        <li>
-            <a asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">@post.Title</a>
-
-            <p>@post.Body</p>
-
-
-        </li>
+            var imagePath = $"/Image/{post.Image}";
+            <img src="@imagePath" />
         }
-    </ul>
+
+    <span class="title"> @post.Title </span> 
+
+    </a>
+
+
+    <div class="post-body">
+        @Html.Raw(post.Body)
+    </div>
+
+    }
+
 </div>

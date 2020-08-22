@@ -11,7 +11,8 @@ namespace BlogApplication.Repository
     {
          Post GetPost(int id);
          List< Post >GetAllPost();
-         void RemovePost(int id);
+        List<Post> GetAllPost(string category);
+        void RemovePost(int id);
          void UpdatePost(Post post);
          void AddPost(Post post);
         Task<bool> SaveChangesAsync();

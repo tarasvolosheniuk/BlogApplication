@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using BlogApplication.Repository;
 using Microsoft.AspNetCore.Identity;
+using BlogApplication.Data.FileManager;
 
 namespace BlogApplication
 {
@@ -27,6 +28,7 @@ namespace BlogApplication
             services.AddMvc(options=>options.EnableEndpointRouting=false);
             services.AddDbContext<AppDbContext>(options=>options.UseSqlServer(_configuration["DevConnection"]));
             services.AddTransient<IRepository,Repository.Repository>();
+            services.AddTransient<IFileManager, FileManager>();
             services.AddIdentity<IdentityUser,IdentityRole>(options=> {
                 options.Password.RequireDigit = false;
                 options.Password.RequireNonAlphanumeric = false;
@@ -45,6 +47,7 @@ namespace BlogApplication
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
             app.UseAuthentication();
             app.UseRouting();
             app.UseMvcWithDefaultRoute();

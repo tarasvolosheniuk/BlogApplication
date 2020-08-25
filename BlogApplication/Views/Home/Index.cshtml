@@ -3,6 +3,7 @@
     ViewBag.Title = "Blog website";
     ViewBag.Description = "This blog is My personal blog as an ASP.NET Core 3.1 Project";
     ViewBag.Keywords = "blog programming gaming photography lifestyle music books";
+    var base_path = Context.Request.PathBase;
 }
 <div class="main-img">
     <span class="title">Personal Blog site</span>
@@ -17,7 +18,7 @@
     <a class="post" asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
         @if (!String.IsNullOrEmpty(post.Image))
         {
-            var imagePath = $"/Image/{post.Image}";
+            var imagePath = $"{base_path}/Image/{post.Image}";
             <img src="@imagePath" />
         }
 

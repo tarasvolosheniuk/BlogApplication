@@ -45,8 +45,8 @@ namespace BlogApplication
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
             }
+            app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseRouting();

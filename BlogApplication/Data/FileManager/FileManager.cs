@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using PhotoSauce.MagicScaler;
 namespace BlogApplication.Data.FileManager
 {
     public class FileManager : IFileManager
@@ -21,6 +21,25 @@ namespace BlogApplication.Data.FileManager
         public FileStream ImageStream(string image)
         {
             return new FileStream(Path.Combine(_imagePath, image), FileMode.Open, FileAccess.Read);
+        }
+
+        public bool RemoveImage(string image)
+        {
+            try
+            {
+                var file = Path.Combine(_imagePath, image);
+                if (File.Exists(file))
+                {
+                        File.Delete(file);
+                        return true;
+                }
+            }
+            catch (Exception e )
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            return false;
         }
 
         public async Task<string> SaveImage(IFormFile image)
@@ -40,7 +59,8 @@ namespace BlogApplication.Data.FileManager
             var filename = $"img_{DateTime.Now.ToString("dd-MM-yyyy-ss-mm")}{mime}";
             using (var fileStream = new FileStream(Path.Combine(savePath,filename),FileMode.Create))
             {
-               await image.CopyToAsync(fileStream);
+               //await image.CopyToAsync(fileStream);
+                    MagicImageProcessor.ProcessImage(image.OpenReadStream(), fileStream, ImageOptions());
             }
             return filename;
             }
@@ -51,5 +71,13 @@ namespace BlogApplication.Data.FileManager
                 return "Error";
             }
         }
+        private ProcessImageSettings ImageOptions()=>new ProcessImageSettings { 
+        Width = 800,
+        Height = 500,
+        ResizeMode= CropScaleMode.Crop,
+        SaveFormat=FileFormat.Jpeg,
+        JpegQuality = 100,
+        JpegSubsampleMode = ChromaSubsampleMode.Subsample420,
+        };
     }
 }

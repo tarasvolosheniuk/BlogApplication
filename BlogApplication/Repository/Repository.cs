@@ -1,5 +1,7 @@
-﻿using BlogApplication.Data;
+﻿using BlogApplication.Comments;
+using BlogApplication.Data;
 using BlogApplication.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +32,9 @@ namespace BlogApplication.Repository
 
         public Post GetPost(int id)
         {
-            return _context.Posts.FirstOrDefault(x => x.Id == id);
+            return _context.Posts.Include(p=>p.MainComments)
+                                     .ThenInclude(mc=>mc.SubComments)
+                                  .FirstOrDefault(x => x.Id == id);
         }
 
         public void RemovePost(int id)
@@ -55,6 +59,11 @@ namespace BlogApplication.Repository
         public List<Post> GetAllPost(string category)
         {
             return _context.Posts.Where(post=>post.Category.ToLower().Equals(category.ToLower())).ToList();
+        }
+
+        public void AddSubComment(SubComment subComment)
+        {
+            _context.SubComments.Add(subComment);
         }
     }
 }

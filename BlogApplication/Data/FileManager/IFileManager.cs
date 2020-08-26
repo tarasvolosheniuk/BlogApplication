@@ -12,5 +12,6 @@ namespace BlogApplication.Data
     {
         FileStream ImageStream(string image);
         Task<string> SaveImage(IFormFile formFile);
+        bool RemoveImage(string image);
     }
 }

@@ -63,9 +63,6 @@ C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\bin\Release\netcor
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\BlogApplication.csprojAssemblyReference.cache
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\BlogApplication.AssemblyInfoInputs.cache
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\BlogApplication.AssemblyInfo.cs
-C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\BlogApplication.csproj.CoreCompileInputs.cache
-C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\BlogApplication.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\BlogApplication.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\BlogApplication.RazorAssemblyInfo.cache
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\BlogApplication.RazorAssemblyInfo.cs
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\BlogApplication.TagHelpers.input.cache
@@ -90,3 +87,9 @@ C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcor
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\BlogApplication.genruntimeconfig.cache
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\bin\Release\netcoreapp3.1\appsettings.production.Development.json
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\bin\Release\netcoreapp3.1\appsettings.production.json
+C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\bin\Release\netcoreapp3.1\PhotoSauce.MagicScaler.dll
+C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\BlogApplication.csproj.CoreCompileInputs.cache
+C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\BlogApplication.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\BlogApplication.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\bin\Release\netcoreapp3.1\bundleconfig.json
+C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\Razor\Views\Home\_MainComment.cshtml.g.cs

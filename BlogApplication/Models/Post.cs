@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BlogApplication.Comments;
+using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 
 namespace BlogApplication.Models
 {
@@ -14,6 +16,7 @@ namespace BlogApplication.Models
         public string Category { get; set; } = "";
 
         public DateTime Created { get; set; } = DateTime.Now;
+        public List<MainComment> MainComments { get; set; }
 
     }
 }

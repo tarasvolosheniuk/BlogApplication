@@ -90,3 +90,6 @@ C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Debug\netcorea
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Debug\netcoreapp3.1\Razor\Views\Home\Post.cshtml.g.cs
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\bin\Debug\netcoreapp3.1\appsettings.production.Development.json
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\bin\Debug\netcoreapp3.1\appsettings.production.json
+C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\bin\Debug\netcoreapp3.1\PhotoSauce.MagicScaler.dll
+C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\bin\Debug\netcoreapp3.1\bundleconfig.json
+C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Debug\netcoreapp3.1\Razor\Views\Home\_MainComment.cshtml.g.cs

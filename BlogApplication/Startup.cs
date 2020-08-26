@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using BlogApplication.Repository;
 using Microsoft.AspNetCore.Identity;
 using BlogApplication.Data.FileManager;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BlogApplication
 {
@@ -25,7 +26,11 @@ namespace BlogApplication
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options=>options.EnableEndpointRouting=false);
+            services.AddMvc(options => { options.EnableEndpointRouting = false;
+                                         options.CacheProfiles.Add("Monthly",
+                                             new CacheProfile {
+                                                 Duration = 60 * 60 * 24 * 7 * 4 });
+                                                 });
             services.AddDbContext<AppDbContext>(options=>options.UseSqlServer(_configuration["DevConnection"]));
             services.AddTransient<IRepository,Repository.Repository>();
             services.AddTransient<IFileManager, FileManager>();

@@ -23,11 +23,21 @@ namespace BlogApplication.Controllers
             _repo = repo;
             _fileManager = fileManager;
         }
-        public IActionResult Index(string category)
+        public IActionResult Index(int pageNumber,string category)
         {
-            var posts = String.IsNullOrEmpty(category) ? _repo.GetAllPost():_repo.GetAllPost(category);
-            //
-            return View(posts);
+            if (pageNumber<1)
+            {
+                return RedirectToAction("Index", new { pageNumber=1, category});
+            }
+
+            var vm = _repo.GetAllPost(pageNumber,category);
+
+            if (vm.PageCount<pageNumber)
+            {
+                return RedirectToAction("Index", new { pageNumber = 1, category });
+            }
+
+            return View(vm);
         }
 
         public IActionResult Post(int id)

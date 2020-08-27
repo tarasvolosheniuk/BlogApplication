@@ -1,6 +1,7 @@
 ﻿using BlogApplication.Comments;
 using BlogApplication.Data;
 using BlogApplication.Models;
+using BlogApplication.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,11 +25,28 @@ namespace BlogApplication.Repository
         {
             _context.Posts.Add(post);
         }
-
         public List<Post> GetAllPost()
         {
-            return _context.Posts.ToList();
+
+            return _context.Posts
+                .ToList();
         }
+
+        //public IndexViewModel GetAllPost( int pageNumber)
+        //{
+        //    int pageSize = 5;
+        //    int skipAmount = pageSize * (pageNumber - 1);
+        //    int postsCount = _context.Posts.Count();
+        //    return new IndexViewModel
+        //    {
+        //        Posts = _context.Posts
+        //                .Skip(skipAmount)
+        //                .Take(pageSize)
+        //                .ToList(),
+        //        NextPage = postsCount >= skipAmount + pageSize,
+        //        PageNumber = pageNumber,
+        //    };
+        //}
 
         public Post GetPost(int id)
         {
@@ -56,14 +74,38 @@ namespace BlogApplication.Repository
             return false;
         }
 
-        public List<Post> GetAllPost(string category)
-        {
-            return _context.Posts.Where(post=>post.Category.ToLower().Equals(category.ToLower())).ToList();
-        }
+        //public List<Post> GetAllPost(string category)
+        //{
+        //    return _context.Posts.Where(post=>post.Category.ToLower().Equals(category.ToLower())).ToList();
+        //}
 
         public void AddSubComment(SubComment subComment)
         {
             _context.SubComments.Add(subComment);
+        }
+
+        public IndexViewModel GetAllPost(int pageNumber, string category)
+        {
+            //Func<Post, bool> InCategory = (post) => { return post.Category.ToLower().Equals(category.ToLower()); };
+            var query = _context.Posts.AsQueryable();
+            if (!String.IsNullOrEmpty(category))
+            {
+                query = query.Where(x => x.Category.ToLower().Equals(category.ToLower()));
+            }
+
+            int pageSize = 5;
+            int skipAmount = pageSize * (pageNumber - 1);
+            int postsCount = query.Count();
+            return new IndexViewModel {
+                Posts = query
+                        .Skip(skipAmount)
+                        .Take(pageSize)
+                        .ToList(),
+                NextPage = postsCount > skipAmount + pageSize,
+                Category = category,
+                PageNumber = pageNumber,
+                PageCount =(int) Math.Ceiling((double) postsCount/ pageSize),
+            };
         }
     }
 }

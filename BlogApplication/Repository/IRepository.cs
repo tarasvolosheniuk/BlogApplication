@@ -1,5 +1,6 @@
 ﻿using BlogApplication.Comments;
 using BlogApplication.Models;
+using BlogApplication.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace BlogApplication.Repository
     {
          Post GetPost(int id);
          List< Post >GetAllPost();
-        List<Post> GetAllPost(string category);
+        //IndexViewModel GetAllPost(int pageNumber);
+        IndexViewModel GetAllPost(int pageNumber, string category);
         void RemovePost(int id);
          void UpdatePost(Post post);
          void AddPost(Post post);

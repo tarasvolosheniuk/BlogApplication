@@ -88,3 +88,17 @@ nav a{
         line-height:1;
         font-size:24px;
     }
+
+
+.sign-in-model {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sign-in-model div{
+    max-width:200px;
+    width:100%;
+    margin-bottom:1rem;
+}

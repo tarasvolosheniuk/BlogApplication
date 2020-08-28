@@ -94,3 +94,4 @@ C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcor
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\bin\Release\netcoreapp3.1\bundleconfig.json
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\Razor\Views\Home\_MainComment.cshtml.g.cs
 C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\Razor\Views\Shared\_BlogPagination.cshtml.g.cs
+C:\Users\LuxComp\source\repos\BlogApplication\BlogApplication\obj\Release\netcoreapp3.1\Razor\Views\Auth\Register.cshtml.g.cs

@@ -33,32 +33,40 @@
 
 
     </div>
+    @if (User.Identity.IsAuthenticated)
+    { 
+
     <div class="comment-section">
         @{
             await Html.RenderPartialAsync("_MainComment", new CommentViewModel { PostId = Model.Id, MainCommentId = 0 });
         }
-        @{
-            foreach (var c in Model.MainComments)
-            {
+        @foreach (var c in Model.MainComments)
+        {
         <p>
             @c.Message --- @c.Created
         </p>
         <div style="margin-left:40px;">
-            <h4>Sub Comment</h4>
-            @{ 
-                await Html.RenderPartialAsync("_MainComment", new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id });
+                <h4>Sub Comment</h4>
+                @{ 
+                    await Html.RenderPartialAsync("_MainComment", new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id });
 
-            }
-            @{ foreach (var s in c.SubComments)
+                }
+                @foreach (var s in c.SubComments)
                 {
-                        <p>
-                            @s.Message --- @s.Created
-                        </p>
+                            <p>
+                                @s.Message --- @s.Created
+                            </p>
                 }
-            }
         </div>
-             }
-                }
         
+        
+        }
     </div>
+                    }
+                    else
+                    {
+<div>
+    <a asp-action="Login" asp-controller="Auth">Sign in to comment!</a>
+</div>
+                    }
 </div>

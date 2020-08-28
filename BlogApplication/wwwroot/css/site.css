@@ -70,7 +70,7 @@ nav a{
 .pages a{
     background-color:#aaa;
     color:wheat;
-    padding:1rem;
+    padding:0.5rem 0.5rem;
     border:1px solid wheat;
     margin:0 0.25rem;
 
@@ -82,4 +82,9 @@ nav a{
 
     .pages a.active{
         background-color:#ccc;
+    }
+
+    .three-dots{
+        line-height:1;
+        font-size:24px;
     }

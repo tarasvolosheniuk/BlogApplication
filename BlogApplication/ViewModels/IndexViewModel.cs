@@ -14,5 +14,6 @@ namespace BlogApplication.ViewModels
         public bool NextPage { get; set; }
         public string Category { get; set; }
         public List<Post> Posts { get; set; }
+        public IEnumerable<int> Pages { get; internal set; }
     }
 }

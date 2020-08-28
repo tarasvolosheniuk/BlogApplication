@@ -11,45 +11,28 @@
 
 <div class="container">
 
-    @*<img src="~/content/static/easy-effective-tips-starting-blog.jpg" width="500"/>*@
+    <partial name="_BlogPagination" model="Model" />
 
     @foreach (Post post in Model.Posts)
     {
-    <a class="post" asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
-        @if (!String.IsNullOrEmpty(post.Image))
-        {
-            var imagePath = $"{base_path}/Image/{post.Image}";
-            <img src="@imagePath" />
-        }
+        <a class="post" asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
+            @if (!String.IsNullOrEmpty(post.Image))
+            {
+                var imagePath = $"{base_path}/Image/{post.Image}";
+                <img src="@imagePath" />
+            }
 
-    <span class="title"> @post.Title </span> 
+            <span class="title"> @post.Title </span>
 
-    </a>
+        </a>
 
 
-    <div class="post-body">
-        @Html.Raw(post.Body)
-    </div>
-
-    }
-
-<div class="pages">
-    @if (Model.PageNumber > 1)
-    {
-        <a asp-action="Index" asp-controller="Home" asp-route-category="@Model.Category" asp-route-pageNumber="@(Model.PageNumber -1)"> &lt; </a>
+        <div class="post-body">
+            @Html.Raw(post.Body)
+        </div>
 
     }
 
-    @for (int i = 1; i <= Model.PageCount; i++)
-    {
-        <a class="@(i == Model.PageNumber ? "active" : "")" asp-action="Index" asp-controller="Home" asp-route-category="@Model.Category" asp-route-pageNumber="@(i)"> @i </a>
+    <partial name="_BlogPagination" model="Model" />
 
-    }
-
-    @if (Model.NextPage)
-    {
-        <a asp-action="Index" asp-controller="Home" asp-route-category="@Model.Category" asp-route-pageNumber="@(Model.PageNumber +1)">></a>
-    }
-
-</div>
 </div>
